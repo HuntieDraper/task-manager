@@ -135,11 +135,13 @@ As a user, I want to add notes to a task so that I can store details such as "us
 As a user, I want to edit a task so that I can fix mistakes or change its schedule.
 - I can change any field: name, schedule, priority, show-from setting, notes.
 - Changing a schedule affects future occurrences only. Past history stays as it was.
+- Given the task currently has an overdue occurrence, when I save a schedule change, then I'm asked whether to **keep** the overdue occurrence or **clear** it. Clearing records it as missed in history.
 
 **US-11: Delete a task** (Must)
 As a user, I want to delete a task I no longer need.
 - Given I choose delete, I'm asked to confirm before it is removed.
-- After deleting, the task no longer appears on the Today screen or in future views.
+- After deleting, the task no longer appears on the Today screen or in future views, and it can't be restored (there is no "recently deleted" area).
+- The deleted task's past history (completed and missed occurrences) is still shown in the past-day view (US-16).
 
 **US-12: Tick off and untick** (Must)
 As a user, I want to tick off a task when I've done it, and undo it if I tapped by mistake.
@@ -236,9 +238,9 @@ These were discussed and deliberately left out of v1 to keep it achievable for o
 - Built with HTML and JavaScript as the main learning focus. CSS styling can be AI-assisted.
 - Technology choices (framework, backend, database, hosting, auth) will be made in the technical design doc and recorded as ADRs.
 
-### Open questions
-1. Should deleting a task also delete its history, or keep the history visible in the past-day view?
-2. When editing a recurring task's schedule, should any current overdue occurrence be kept or cleared?
+### Resolved questions
+1. **Deleting a task:** its past history stays visible in the past-day view. There's no "recently deleted" area or restore option. (See US-11.)
+2. **Changing a schedule while a task is overdue:** the user chooses in a confirmation popup whether to keep or clear the overdue occurrence. (See US-10.)
 
 ## 9. Release plan
 
